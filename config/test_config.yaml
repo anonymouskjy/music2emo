@@ -1,0 +1,16 @@
+defaults:
+  - base_config
+  - _self_
+
+batch_size: 8
+devices: [0]
+
+trainer:
+  devices: ${devices}
+  accelerator: 'gpu'
+
+checkpoint_latest: True
+
+multitask: True
+dataset_type: "va" 
+checkpoint: "tb_logs/best/J.ckpt"

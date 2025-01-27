@@ -1,0 +1,70 @@
+version: "1.34"
+
+lr: 1e-4
+log_step: 1
+split: 0
+batch_size: 8
+sr: 16000
+
+datasets:
+  - jamendo
+  - emomusic
+  - pmemo
+  - deam
+
+model:
+  encoder: "MERT"
+  layers:
+    - 5
+    - 6
+  classifier: "linear-mt-attn-ck"
+  # - linear
+  # - linear-attn-ck
+  # - linear-mt-attn-ck
+
+  kd: True
+  kd_weight: 0.8
+  kd_temperature: 1
+  lr: 1e-4
+
+dataset:
+  jamendo:
+    root: './dataset/jamendo'
+    subset: 'moodtheme'
+    batch_size: 8
+    output_size : 56
+    split: 0
+    segment_type: "all" # [all,f10s,f30s,10s,30s]
+    num_workers: 4
+  deam:
+    root: './dataset/deam'
+    batch_size: 8
+    output_size : 2 
+    segment_type: "all" # [all,f10s,f30s,10s,30s]
+    num_workers: 4
+  pmemo:
+    root: './dataset/pmemo'
+    batch_size: 8
+    output_size : 2 
+    segment_type: "all" # [all,f10s,f30s,10s,30s]
+    num_workers: 4
+  emomusic:
+    root: './dataset/emomusic'
+    batch_size: 8
+    output_size : 2 
+    segment_type: "all" # [all,f10s,f30s,10s,30s]
+    num_workers: 4
+
+# --------------------------------------- #
+genre_class_size: 87
+mood_class_size: 56
+instr_class_size: 40
+dac_latents_size: 72
+dac_rvq_size: 9
+# --------------------------------------- #
+
+checkpoint_pmemo: "tb_logs/best/P.ckpt"
+checkpoint_deam: "tb_logs/best/D.ckpt"
+checkpoint_emomusic: "tb_logs/best/E.ckpt"
+checkpoint_jamendo: "tb_logs/best/J.ckpt"
+

@@ -1,0 +1,16 @@
+device_id: 3
+
+is_split: True
+segment_duration: 30
+
+dataset:
+  input_dir: '../dataset/deam/mp3'
+  output_dir: '../dataset/deam/mert_30s'
+
+model: 
+  name: 'm-a-p/MERT-v1-95M'
+  sr: 24000
+
+
+
+
