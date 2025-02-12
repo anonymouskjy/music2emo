@@ -1,0 +1,51 @@
+device_id: 3
+
+is_split: True
+segment_duration: 30
+
+
+# --- DATASET --- #
+
+# dataset:
+#   input_dir: '../dataset/jamendo/mp3'
+#   output_dir: '../dataset/jamendo/mert_30s'
+    # audio length : Full
+
+# dataset:
+#   input_dir: '../dataset/dmdd/mp3'
+#   output_dir: '../dataset/dmdd/mert_30s'
+#   # audio length : ~30s
+
+# dataset:
+#   input_dir: '../dataset/emomusic/mp3'
+#   output_dir: '../dataset/emomusic/mert_30s'
+#   # audio length : ~30s
+
+# dataset:
+#   input_dir: '../dataset/pmemo/mp3'
+#   output_dir: '../dataset/pmemo/mert_30s'
+#   # audio length : ~30s
+
+
+dataset:
+  input_dir: '../dataset/deam/mp3'
+  output_dir: '../dataset/deam/mert_30s'
+  # audio length : ~30s
+
+
+
+
+# --- ENCODER --- #
+
+model: 
+  name: 'm-a-p/MERT-v1-95M'
+  sr: 24000
+
+# model: 
+#   name: 'music2latent'
+#   sr: 44100
+
+
+
+
+

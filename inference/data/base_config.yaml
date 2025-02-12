@@ -1,0 +1,106 @@
+version: "1.34"
+
+lr: 1e-4
+log_step: 1
+split: 0
+batch_size: 8
+sr: 16000
+
+datasets:
+  - jamendo
+  - emomusic
+  - pmemo
+  - deam
+
+model:
+  encoder: "MERT"
+  layers:
+    - 5
+    - 6
+  classifier: "linear-mt-attn-ck"
+  # - linear
+  # - linear-attn-ck
+  # - linear-mt-attn-ck
+
+  kd: True
+  kd_weight: 0.8
+  kd_temperature: 1
+  lr: 1e-4
+
+# audio_path: './dataset/jamendo'
+# subset: 'moodtheme'
+
+dataset:
+  jamendo:
+    root: './dataset/jamendo'
+    subset: 'moodtheme'
+    batch_size: 8
+    output_size : 56
+    split: 0
+    segment_type: "all" # [all,f10s,f30s,10s,30s]
+    num_workers: 4
+  deam:
+    root: './dataset/deam'
+    batch_size: 8
+    output_size : 2 
+    segment_type: "all" # [all,f10s,f30s,10s,30s]
+    num_workers: 4
+  pmemo:
+    root: './dataset/pmemo'
+    batch_size: 8
+    output_size : 2 
+    segment_type: "all" # [all,f10s,f30s,10s,30s]
+    num_workers: 4
+  emomusic:
+    root: './dataset/emomusic'
+    batch_size: 8
+    output_size : 2 
+    segment_type: "all" # [all,f10s,f30s,10s,30s]
+    num_workers: 4
+
+
+
+# --------------------------------------- #
+genre_class_size: 87
+mood_class_size: 56
+instr_class_size: 40
+dac_latents_size: 72
+dac_rvq_size: 9
+# --------------------------------------- #
+
+
+#PMEMO BEST (0.5360 0.7772), mt: (0.5401 0.7780)
+checkpoint_pmemo: "tb_logs/best/P.ckpt"
+
+#DEAM BEST (0.5131 0.6025), mt: (0.5150 0.6125)
+checkpoint_deam: "tb_logs/best/D.ckpt"
+
+#EMOMUSIC BEST (0.5957 0.7489), mt: (0.6091 0.7525)
+checkpoint_emomusic: "tb_logs/best/E.ckpt"
+
+#JAMENDO BEST (0.1521 0.7806)
+checkpoint_jamendo: "tb_logs/best/J.ckpt"
+
+
+
+
+# datasets:
+#   - jamendo
+#   - pmemo
+#   - deam
+#   - emomusic
+#   - pmemo
+#   - jamendo
+# datasets_val:
+#   - emomusic
+# model_save_path: './saved_models/'
+# results_save_path: './results/'
+# hydra:
+#   job:
+#     chdir: True
+# - MERT M2L LIBROSA Encodec DAC
+# aggr_method: "mean"
+# - mean
+# - median
+# - 80th_percentile
+# - max

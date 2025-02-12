@@ -1,0 +1,41 @@
+defaults:
+  - base_config
+  - _self_
+
+batch_size: 8
+devices: [0]
+
+trainer:
+  devices: ${devices}
+  accelerator: 'gpu'
+
+# datasets:
+#   - jamendo
+#   - dmdd
+
+checkpoint_latest: True
+
+multitask: True
+dataset_type: "va" 
+#'mood' or 'va'
+## If not True, then use following checkpoint.
+
+checkpoint: "tb_logs/best/EJ.ckpt"
+
+# checkpoint_J: "tb_logs/best/jamendo.ckpt"
+# checkpoint_P: "tb_logs/best/pmemo.ckpt"
+# checkpoint_E: "tb_logs/best/emomusic.ckpt"
+# checkpoint_D: "tb_logs/best/deam.ckpt"
+
+# checkpoint_PJ: "tb_logs/best/PJ.ckpt"
+# checkpoint_EJ: "tb_logs/best/EJ.ckpt"
+# checkpoint_DJ: "tb_logs/best/DJ.ckpt"
+
+# checkpoint_JP: "tb_logs/best/JP.ckpt"
+# checkpoint_JE: "tb_logs/best/JE.ckpt"
+# checkpoint_JD: "tb_logs/best/JD.ckpt"
+
+# checkpoint_ALL: "tb_logs/best/ALL.ckpt"
+
+
+# checkpoint: "tb_logs/train_audio_classification/version_110/checkpoints/21-0.1202.ckpt"
